@@ -8,12 +8,12 @@ const reAuthTriggeredBy = state => state.reAuth.reAuthTriggeredBy
 const reAuthInfo = state => state.reAuth.info
 
 export {
-  user,
-  authProviders,
-  authStatus,
-  authUI,
-  passwordAuthLinkingPending,
-  reAuthRequired,
-  reAuthTriggeredBy,
-  reAuthInfo
+    user,
+    authProviders,
+    authStatus,
+    authUI,
+    passwordAuthLinkingPending,
+    reAuthRequired,
+    reAuthTriggeredBy,
+    reAuthInfo
 }

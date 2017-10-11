@@ -8,47 +8,47 @@ import store from '../../../store'
 // Check if a user exists in the /users ref
 //
 const checkUserExists = function (userId) {
-  var ref = firebase.database().ref('users/' + userId)
+    var ref = firebase.database().ref('users/' + userId)
 
-  var checkUserId = ref.once('value')
-  .then(function (snapshot) {
-    var userIdInDatabase = snapshot.hasChild('uid') // true
-    console.log(userIdInDatabase)
-    if (userIdInDatabase) {
-      // console.log('User Database Record:')
-      // console.log(snapshot.child(userId).val())
-      return true
-    } else {
-      // console.log('User Database Record:')
-      // console.log(snapshot.child(userId).val())
-      return false
-    }
-  })
-  // console.log(checkUserId)
-  checkUserId.then(function (result) {
-    // console.log(result)
-    store.dispatch('setNotification', {
-      type: 'primary',
-      message: 'checkUserExists(): ' + result
+    var checkUserId = ref.once('value')
+        .then(function (snapshot) {
+            var userIdInDatabase = snapshot.hasChild('uid') // true
+            console.log(userIdInDatabase)
+            if (userIdInDatabase) {
+                // console.log('User Database Record:')
+                // console.log(snapshot.child(userId).val())
+                return true
+            } else {
+                // console.log('User Database Record:')
+                // console.log(snapshot.child(userId).val())
+                return false
+            }
+        })
+    // console.log(checkUserId)
+    checkUserId.then(function (result) {
+        // console.log(result)
+        store.dispatch('setNotification', {
+            type: 'primary',
+            message: 'checkUserExists(): ' + result
+        })
+        return result
     })
-    return result
-  })
-  // if (checkUserId) {
-  //   return true
-  // } else {
-  //   return false
-  // }
+    // if (checkUserId) {
+    //   return true
+    // } else {
+    //   return false
+    // }
 }
 
 // Function to call if access denied.
-function onReject (rejection) {
-  store.dispatch('setNotification', {
-    type: 'danger',
-    message: rejection.message
-  })
+function onReject(rejection) {
+    store.dispatch('setNotification', {
+        type: 'danger',
+        message: rejection.message
+    })
 }
 
 export {
-  checkUserExists,
-  onReject
+    checkUserExists,
+    onReject
 }
